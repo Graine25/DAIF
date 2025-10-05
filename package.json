@@ -1,0 +1,44 @@
+{
+  "name": "axel",
+  "version": "1.0.0",
+  "description": "Axel Code Analyzer desktop app (TypeScript/Electron rewrite)",
+  "private": true,
+  "type": "module",
+  "main": "out/main/main.js",
+  "scripts": {
+    "clean": "node scripts/clean.cjs",
+    "copy:static": "node scripts/copy-static.cjs",
+    "build": "npm run clean && tsc && npm run copy:static",
+    "start": "npm run build && electron .",
+    "dev": "npm run build && concurrently \"tsc --watch\" \"electron .\"",
+    "package:mac": "npm run build && electron-builder --mac"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "concurrently": "^8.2.2",
+    "electron": "^38.2.1",
+    "electron-builder": "^24.6.4",
+    "typescript": "^5.4.3"
+  },
+  "build": {
+    "appId": "com.axel.desktop",
+    "productName": "Axel Code Analyzer",
+    "files": [
+      "out/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "output": "release"
+    },
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "category": "public.app-category.developer-tools"
+    }
+  }
+}

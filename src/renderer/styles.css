@@ -1,0 +1,348 @@
+:root {
+  color-scheme: dark;
+  --gradient-start: #1a1a2e;
+  --gradient-mid: #16213e;
+  --gradient-alt: #0f3460;
+  --gradient-end: #0d1b2a;
+  --surface: rgba(26, 32, 44, 0.8);
+  --surface-border: #4a5568;
+  --text-primary: #e2e8f0;
+  --text-muted: #a0aec0;
+  --accent-start: #3182ce;
+  --accent-end: #2b6cb0;
+  --tab-idle-start: #4a5568;
+  --tab-idle-end: #2d3748;
+  --tab-hover-start: #5a6578;
+  --tab-hover-end: #4a5568;
+  --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  font-family: var(--font-body);
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-mid), var(--gradient-alt), var(--gradient-end));
+  color: var(--text-primary);
+}
+
+body {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.app-shell {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  max-width: 1100px;
+  margin: 24px;
+  border-radius: 16px;
+  border: 1px solid rgba(74, 85, 104, 0.4);
+  background: linear-gradient(160deg, rgba(45, 55, 72, 0.9), rgba(26, 32, 44, 0.85));
+  box-shadow: 0 30px 80px rgba(15, 30, 60, 0.4);
+  backdrop-filter: blur(8px);
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  padding: 32px;
+  border-bottom: 1px solid rgba(74, 85, 104, 0.4);
+}
+
+.project-status {
+  padding: 0 32px 16px;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.tagline {
+  margin: 6px 0 0;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.runtime {
+  text-align: right;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.tab-bar {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 18px 24px 0;
+}
+
+.tab-button {
+  border: 1px solid var(--tab-idle-start);
+  border-bottom: none;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  padding: 12px 24px;
+  background: linear-gradient(180deg, var(--tab-idle-start), var(--tab-idle-end));
+  color: var(--text-primary);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.tab-button:hover:not(.is-active) {
+  background: linear-gradient(180deg, var(--tab-hover-start), var(--tab-hover-end));
+  color: #ffffff;
+}
+
+.tab-button.is-active {
+  background: linear-gradient(180deg, var(--accent-start), var(--accent-end));
+  border-color: var(--accent-start);
+  color: #ffffff;
+  box-shadow: 0 12px 24px rgba(49, 130, 206, 0.25);
+}
+
+.tab-content {
+  flex: 1;
+  padding: 32px;
+  border-top: 1px solid rgba(74, 85, 104, 0.4);
+}
+
+.tab-panel {
+  background: var(--surface);
+  border-radius: 16px;
+  border: 2px dashed var(--surface-border);
+  padding: 48px;
+  text-align: center;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.tab-panel[data-tab='call-graph'] {
+  padding: 32px;
+  text-align: initial;
+  border-style: solid;
+}
+
+.tab-panel h2 {
+  margin: 0 0 16px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.status-chip {
+  display: inline-block;
+  margin: 0 0 18px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: rgba(72, 187, 255, 0.15);
+  border: 1px solid rgba(72, 187, 255, 0.3);
+}
+
+.tab-panel p {
+  margin: 0 auto;
+  max-width: 540px;
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+.call-graph {
+  display: grid;
+  grid-template-columns: minmax(220px, 260px) minmax(0, 1fr) minmax(220px, 280px);
+  gap: 24px;
+  height: 100%;
+}
+
+.call-graph__sidebar,
+.call-graph__queue {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.call-graph__canvas {
+  background: rgba(15, 24, 44, 0.55);
+  border-radius: 20px;
+  border: 1px solid rgba(74, 85, 104, 0.35);
+  padding: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.panel {
+  background: rgba(15, 24, 44, 0.6);
+  border-radius: 16px;
+  border: 1px solid rgba(74, 85, 104, 0.35);
+  padding: 20px 24px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.panel__header {
+  margin-bottom: 16px;
+}
+
+.panel__header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.panel__subtitle {
+  margin: 4px 0 0;
+  font-size: 12px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: rgba(226, 232, 240, 0.6);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+}
+
+.stats dt {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--text-muted);
+}
+
+.stats dd {
+  margin: 4px 0 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.group-list,
+.queue-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.group-item,
+.queue-item {
+  background: rgba(20, 30, 52, 0.8);
+  border-radius: 12px;
+  padding: 12px 14px;
+  border: 1px solid rgba(74, 85, 104, 0.3);
+}
+
+.group-item__title {
+  margin: 0;
+  font-size: 15px;
+}
+
+.group-item__meta {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.queue-item__title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.queue-item__meta {
+  margin: 6px 0 0;
+  font-size: 12px;
+  color: var(--text-muted);
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.queue-item__tags {
+  margin: 8px 0 0;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(72, 187, 255, 0.15);
+  border: 1px solid rgba(72, 187, 255, 0.3);
+  font-size: 11px;
+  letter-spacing: 0.3px;
+}
+
+.canvas-placeholder {
+  width: 100%;
+  max-width: 620px;
+  text-align: center;
+}
+
+.canvas-placeholder h3 {
+  margin: 0 0 8px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.canvas-placeholder__hint {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.canvas-placeholder__meta {
+  margin-top: 24px;
+  display: inline-flex;
+  gap: 16px;
+  font-size: 13px;
+  color: rgba(226, 232, 240, 0.85);
+}
+
+.empty-state {
+  font-size: 13px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .app-shell {
+    margin: 16px;
+  }
+
+  .app-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .tab-bar {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .tab-content {
+    padding: 24px;
+  }
+
+  .tab-panel {
+    padding: 32px 24px;
+  }
+
+  .call-graph {
+    grid-template-columns: 1fr;
+  }
+
+  .call-graph__canvas {
+    order: -1;
+  }
+}

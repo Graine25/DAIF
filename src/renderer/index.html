@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Axel Code Analyzer</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="app-header">
+        <div>
+          <h1>Axel Code Analyzer</h1>
+          <p class="tagline">TypeScript desktop rewrite — macOS &amp; Windows ready</p>
+        </div>
+        <div class="runtime" id="runtime-info"></div>
+      </header>
+
+      <section class="project-status" aria-live="polite">
+        <span id="project-debug">Loading project state…</span>
+      </section>
+
+      <nav class="tab-bar" role="tablist" aria-label="Features">
+        <button class="tab-button" role="tab" aria-selected="true" data-tab="function-analysis">
+          Function Analysis
+        </button>
+        <button class="tab-button" role="tab" aria-selected="false" data-tab="call-graph">
+          Call Graph
+        </button>
+        <button class="tab-button" role="tab" aria-selected="false" data-tab="constructor">
+          Constructor
+        </button>
+      </nav>
+
+      <main class="tab-content">
+        <section class="tab-panel" role="tabpanel" data-tab="function-analysis">
+          <h2>Function Analysis</h2>
+          <p class="status-chip">🚧 Under Construction</p>
+          <p>
+            This feature is being rebuilt in TypeScript. Expect the analysis engine, linting
+            integrations, and reporting UI to land in a future update.
+          </p>
+        </section>
+        <section class="tab-panel" role="tabpanel" data-tab="call-graph" hidden>
+          <div class="call-graph">
+            <aside class="call-graph__sidebar">
+              <div class="panel">
+                <header class="panel__header">
+                  <h3>Graph Overview</h3>
+                  <p class="panel__subtitle">Snapshot of the imported functions</p>
+                </header>
+                <dl class="stats" id="call-graph-overview"></dl>
+              </div>
+
+              <div class="panel">
+                <header class="panel__header">
+                  <h3>Groups</h3>
+                  <p class="panel__subtitle">Suggested modules or files</p>
+                </header>
+                <ul class="group-list" id="call-graph-groups"></ul>
+              </div>
+            </aside>
+
+            <section class="call-graph__canvas" aria-label="Graph canvas">
+              <div class="canvas-placeholder" id="call-graph-canvas">
+                <h3>Call Graph Preview</h3>
+                <p class="canvas-placeholder__hint">
+                  Interactive layout coming soon. For now we surface a quick summary so you can
+                  verify ingested data before the renderer ships.
+                </p>
+                <div class="canvas-placeholder__meta" id="call-graph-meta"></div>
+              </div>
+            </section>
+
+            <aside class="call-graph__queue">
+              <div class="panel">
+                <header class="panel__header">
+                  <h3>Function Queue</h3>
+                  <p class="panel__subtitle">Ready for placement</p>
+                </header>
+                <ol class="queue-list" id="call-graph-queue"></ol>
+              </div>
+            </aside>
+          </div>
+        </section>
+        <section class="tab-panel" role="tabpanel" data-tab="constructor" hidden>
+          <h2>Constructor</h2>
+          <p class="status-chip">🚧 Under Construction</p>
+          <p>
+            The constructor workspace is on the roadmap. It will bring guided project scaffolding,
+            customizable templates, and Git-friendly exports.
+          </p>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="main.js"></script>
+  </body>
+</html>

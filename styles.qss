@@ -1,0 +1,136 @@
+/* Dark Blue Gradient Theme for Axel Code Analyzer */
+
+/* Main window styling */
+QMainWindow {
+    background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1,
+        stop: 0 #1a1a2e,
+        stop: 0.3 #16213e,
+        stop: 0.6 #0f3460,
+        stop: 1 #0d1b2a);
+}
+
+/* Tab widget styling */
+QTabWidget::pane {
+    border: 1px solid #2d3748;
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+        stop: 0 #2d3748,
+        stop: 1 #1a202c);
+    border-radius: 8px;
+}
+
+QTabWidget::tab-bar {
+    alignment: center;
+}
+
+QTabBar::tab {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+        stop: 0 #4a5568,
+        stop: 1 #2d3748);
+    color: #e2e8f0;
+    padding: 12px 24px;
+    margin-right: 2px;
+    border: 1px solid #4a5568;
+    border-bottom: none;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+QTabBar::tab:selected {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+        stop: 0 #3182ce,
+        stop: 1 #2b6cb0);
+    color: #ffffff;
+    border: 1px solid #3182ce;
+}
+
+QTabBar::tab:hover:!selected {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+        stop: 0 #5a6578,
+        stop: 1 #4a5568);
+    color: #ffffff;
+}
+
+/* Tab content area */
+QWidget {
+    background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1,
+        stop: 0 #1a1a2e,
+        stop: 0.5 #16213e,
+        stop: 1 #0f3460);
+    color: #e2e8f0;
+}
+
+/* Labels styling */
+QLabel {
+    background: transparent;
+    color: #e2e8f0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Under construction message styling */
+QLabel[alignment="AlignCenter"] {
+    background: rgba(26, 32, 44, 0.8);
+    border: 2px dashed #4a5568;
+    border-radius: 12px;
+    margin: 20px;
+}
+
+/* General text styling */
+* {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 14px;
+}
+
+/* Scroll areas if needed */
+QScrollArea {
+    border: none;
+    background: transparent;
+}
+
+QScrollBar:vertical {
+    border: none;
+    background: #2d3748;
+    width: 12px;
+    margin: 0px;
+}
+
+QScrollBar::handle:vertical {
+    background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0,
+        stop: 0 #4a5568,
+        stop: 1 #718096);
+    min-height: 20px;
+    border-radius: 6px;
+}
+
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+
+QScrollBar:horizontal {
+    border: none;
+    background: #2d3748;
+    height: 12px;
+    margin: 0px;
+}
+
+QScrollBar::handle:horizontal {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+        stop: 0 #4a5568,
+        stop: 1 #718096);
+    min-width: 20px;
+    border-radius: 6px;
+}
+
+QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {
+    width: 0px;
+}
+
+/* Window title bar styling (macOS) */
+QMainWindow::title {
+    background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0,
+        stop: 0 #1a1a2e,
+        stop: 0.5 #16213e,
+        stop: 1 #0f3460);
+    color: #ffffff;
+}
