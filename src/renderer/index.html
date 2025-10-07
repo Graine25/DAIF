@@ -17,12 +17,9 @@
         <div class="runtime" id="runtime-info"></div>
       </header>
 
-      <section class="project-status" aria-live="polite">
-        <span id="project-debug">Loading project state…</span>
-      </section>
-
       <nav class="tab-bar" role="tablist" aria-label="Features">
-        <button class="tab-button" role="tab" aria-selected="true" data-tab="function-analysis">
+        <button class="tab-button" role="tab" aria-selected="true" data-tab="chat">Chat</button>
+        <button class="tab-button" role="tab" aria-selected="false" data-tab="function-analysis">
           Function Analysis
         </button>
         <button class="tab-button" role="tab" aria-selected="false" data-tab="call-graph">
@@ -34,7 +31,47 @@
       </nav>
 
       <main class="tab-content">
-        <section class="tab-panel" role="tabpanel" data-tab="function-analysis">
+        <section class="tab-panel" role="tabpanel" data-tab="chat">
+          <div class="chat-pane" aria-live="polite">
+            <header class="chat-pane__header">
+              <div>
+                <h2>Recon Chat</h2>
+                <p class="chat-pane__subtitle">
+                  Ask the MCP-backed agent to inspect functions, fetch disassembly, and suggest placements.
+                </p>
+              </div>
+              <p class="chat-pane__status" id="chat-status">
+                <span class="status-dot"></span>
+                <span>Connecting…</span>
+              </p>
+            </header>
+
+            <section class="chat-thread" id="chat-thread" aria-label="Conversation"></section>
+
+            <footer class="chat-input" id="chat-input">
+              <form class="chat-form" id="chat-form">
+                <label class="visually-hidden" for="chat-message">Send a message</label>
+                <textarea
+                  id="chat-message"
+                  name="chat-message"
+                  placeholder="Ask Axel to enumerate functions or summarize a symbol…"
+                  rows="3"
+                  autocapitalize="sentences"
+                  autocomplete="off"
+                  spellcheck="false"
+                  required
+                ></textarea>
+                <div class="chat-actions">
+                  <button type="submit" class="chat-send" id="chat-send" disabled>
+                    Send
+                  </button>
+                  <p class="chat-hint">Shift + Enter for newline</p>
+                </div>
+              </form>
+            </footer>
+          </div>
+        </section>
+        <section class="tab-panel" role="tabpanel" data-tab="function-analysis" hidden>
           <h2>Function Analysis</h2>
           <p class="status-chip">🚧 Under Construction</p>
           <p>

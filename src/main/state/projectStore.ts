@@ -1,7 +1,7 @@
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
-import { app } from 'electron';
 import { emptyProjectSnapshot, ProjectSnapshot, FunctionDossier, CallGraphNode, CallGraphEdge, FunctionQueueEntry, AuditLogEntry } from '../../common/domain.js';
+import { ensureDaifStructure, getDaifPaths } from '../filesystem/daifPaths.js';
 
 export interface ProjectStore {
   load(): Promise<ProjectSnapshot>;
@@ -19,11 +19,12 @@ export class JsonProjectStore implements ProjectStore {
   private readonly storePath: string;
 
   constructor(filename = 'axel-project.json') {
-    const userDataPath = app.getPath('userData');
-    this.storePath = path.join(userDataPath, filename);
+    const { decomp } = getDaifPaths();
+    this.storePath = path.join(decomp, filename);
   }
 
   async load(): Promise<ProjectSnapshot> {
+    await ensureDaifStructure();
     try {
       const raw = await fs.readFile(this.storePath, 'utf8');
       this.snapshot = JSON.parse(raw) as ProjectSnapshot;
@@ -40,8 +41,10 @@ export class JsonProjectStore implements ProjectStore {
   }
 
   async save(snapshot: ProjectSnapshot): Promise<void> {
+    const paths = await ensureDaifStructure();
     this.snapshot = snapshot;
     await fs.writeFile(this.storePath, JSON.stringify(snapshot, null, 2), 'utf8');
+    await writeFlowchartSnapshot(paths.flowchart, snapshot);
   }
 
   getSnapshot(): ProjectSnapshot {
@@ -83,3 +86,13 @@ export class JsonProjectStore implements ProjectStore {
     return snapshot;
   }
 }
+
+const writeFlowchartSnapshot = async (directory: string, snapshot: ProjectSnapshot): Promise<void> => {
+  const flowchartPayload = {
+    updatedAt: new Date().toISOString(),
+    graph: snapshot.graph
+  };
+
+  const targetPath = path.join(directory, 'call-graph.json');
+  await fs.writeFile(targetPath, JSON.stringify(flowchartPayload, null, 2), 'utf8');
+};

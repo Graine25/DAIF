@@ -1,6 +1,14 @@
 import { registerProjectIpc } from './projectIpc.js';
-import { ProjectStore } from '../state/projectStore.js';
+import { registerAgentIpc } from './agentIpc.js';
+import type { ProjectStore } from '../state/projectStore.js';
+import type { AgentService } from '../agent/agent.js';
 
-export const registerIpcHandlers = (store: ProjectStore): void => {
+type IpcDependencies = {
+  store: ProjectStore;
+  agent: AgentService;
+};
+
+export const registerIpcHandlers = ({ store, agent }: IpcDependencies): void => {
   registerProjectIpc(store);
+  registerAgentIpc(agent);
 };

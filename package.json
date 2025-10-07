@@ -40,5 +40,10 @@
       ],
       "category": "public.app-category.developer-tools"
     }
+  },
+  "dependencies": {
+    "@ai-sdk/openai": "^2.0.42",
+    "ai": "^5.0.60",
+    "zod": "^4.1.11"
   }
 }
